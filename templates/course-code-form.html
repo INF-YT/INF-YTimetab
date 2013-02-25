@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Calendar{% endblock title %}
+
+
+{% block scripts %}
+    <script type="text/javascript">
+        function addCourseCodeInputElement (n) {
+
+            var inputs = document.getElementsByTagName('input');
+            var addInputButton = document.getElementById("add-course-code-input-button");
+            var last_input= inputs[inputs.length - 2];
+            var next_input = last_input.cloneNode();
+            var next_input_index = inputs.length - 1;
+            next_input.setAttribute("id", "course_codes-" + next_input_index);
+            next_input.setAttribute("name", "course_codes-" + next_input_index);
+            next_input.setAttribute("type", "text");
+            next_input.setAttribute("pattern", "^\\w{4}\\d{5}$");
+            next_input.setAttribute("title", "a valid University of Edinburgh course code, consisting of 4 letters and 5 numbers, i.e. MATH08058");
+
+            var form = document.getElementById("course-code-form");
+            form.insertBefore(next_input, addInputButton)
+        };
+    </script>
+{% endblock scripts %}
+
+
+
+{% from "_formhelpers.html" import render_field %}
+{% block body %}
+    <form id="course-code-form" method=post action="/calendar">
+
+        {% for field in form.course_codes %}
+            {{ field(pattern="^\w{4}\d{5}$", title="a valid University of Edinburgh course code, consisting of 4 letters and 5 numbers, i.e. MATH08058") }}
+        {% endfor %}
+
+        <a id="add-course-code-input-button" href="javascript:void(0)" onclick="addCourseCodeInputElement()">+</a>
+
+        {{ form.submit_button(id="course-code-form-button") }}
+    </form>
+{% endblock body %}

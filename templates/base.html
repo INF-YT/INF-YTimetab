@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% if title %}{{ title }}{% else %}{% block title %}{% endblock title %}{% endif %}</title>
+    <meta charset="utf-8">
+
+    <style type="text/css" href="/css/main.css"></style>
+
+    {% block styles %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}" />
+    {% endblock styles %}
+
+    {% block scripts %}
+    {% endblock scripts %}
+</head>
+
+<body>
+<div id="container">
+    <h1>{% if title %}{{ title }}{% else %}{{ self.title() }}{% endif %}</h1>
+
+    {% block body %}
+    {% endblock body %}
+
+    <footer>
+        <p>copyright &copy; 2013 INF-YT</p>
+
+        {% block footerscripts %}
+        {% endblock footerscripts %}
+    </footer>
+</div>
+</body>
+</html>
