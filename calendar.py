@@ -3,6 +3,7 @@
 import argparse
 import os
 import os.path
+import cStringIO
 import sys
 
 
@@ -20,8 +21,12 @@ def main(event_directory, course_codes, output_file=''):
                 filename_list.append(str(os.path.join(event_directory, filename)))
 
     out = sys.stdout
-    if output_file != '':
+    if output_file.startswith('str'):
+        # write to an internal string object
+        out = cStringIO.StringIO()
+    elif output_file != '':
         out = open(output_file, 'w')
+
     out.write("BEGIN:VCALENDAR\nVERSION:2.0\n")
 
     for filename in filename_list:
@@ -32,6 +37,10 @@ def main(event_directory, course_codes, output_file=''):
             out.write(line)
 
     out.write("END:VCALENDAR")
+
+    if output_file.startswith('str'):
+        out.seek(0)
+        return out.read()
 
 
 if __name__ == '__main__':
@@ -44,7 +53,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--file', help='output filename')
     args = parser.parse_args()
 
-    event_directory = './lectures'
+    event_directory = './static/lectures'
     if args.event_directory:
         event_directory = args.event_directory
     course_codes = vars(args)['course-code']
