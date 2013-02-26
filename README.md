@@ -1,7 +1,7 @@
 INF-YTimetab
 ============
 
-IINF-YTimetab the INF-YT's rewrite of the University of Edinburgh's
+INF-YTimetab the INF-YT's rewrite of the University of Edinburgh's
 [Timetab](http://www.timetab.ed.ac.uk/) timetabling system.
 
 
