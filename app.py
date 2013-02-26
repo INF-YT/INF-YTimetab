@@ -6,13 +6,7 @@ from CourseCodeForm import CourseCodeForm
 
 app = Flask(__name__)
 
-
-@app.route('/')
-def index():
-    return render_template('base.html', title='hey there!')
-
-
-@app.route('/calendar', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def calendar():
     form = CourseCodeForm(request.form)
 
