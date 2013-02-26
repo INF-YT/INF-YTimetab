@@ -4,29 +4,51 @@
 <head>
     <title>{% if title %}{{ title }}{% else %}{% block title %}{% endblock title %}{% endif %}</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style type="text/css" href="/css/main.css"></style>
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" />
     {% block styles %}
-    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.css')}}" />
     {% endblock styles %}
 
-    {% block scripts %}
-    {% endblock scripts %}
+    {% block headscripts %}
+    {% endblock headscripts %}
 </head>
 
 <body>
-<div class="container">
-    <h1>{% if title %}{{ title }}{% else %}{{ self.title() }}{% endif %}</h1>
+
+    {% block header %}
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="/">{% if title %}{{ title }}{% else %}{{ self.title() }}{% endif %}</a>
+<!--             <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            </ul>
+ -->        </div>
+    </div>
+    {% endblock header %}
+
+<div class="container-fluid">
+
+    <div class="row-fluid">
+    <div class="span6 offset3">
+    {% block blurb %}
+    {% endblock blurb %}
 
     {% block body %}
     {% endblock body %}
+    </div>
+    </div>
 
     <footer>
         <p>copyright &copy; 2013 INF-YT</p>
 
-        {% block footerscripts %}
-        {% endblock footerscripts %}
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        {% block scripts %}
+        {% endblock scripts %}
     </footer>
 </div>
 </body>
