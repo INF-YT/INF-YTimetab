@@ -13,5 +13,7 @@ Part of the Informatics Young Team's [ILWHack](http://data.inf.ed.ac.uk/ilwhack/
 [MyED 2."oh"](https://github.com/inf1yt/don), the INF-YTimetable produces
 a standard [ical](http://en.wikipedia.org/wiki/Icalendar) calendar file from a
 list of your courses, allowing you to import your lecture timetable into
-almost any Calendar application, including Google Calendar, Outlook, and that
-slide phone you've kept since 2006.
+almost any Calendar application, including Google Calendar, Outlook, and
+probably that slide phone you've kept since 2006.
+
+A bit better than an HTML page, non?
