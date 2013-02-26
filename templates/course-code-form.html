@@ -2,6 +2,26 @@
 {% block title %}INF-YTimetab{% endblock title %}
 
 
+{% block body %}
+    <form id="course-code-form" method=post action="/">
+        <h2>Enter your course-codes below:</h2>
+
+        <p>Use the '+' button to add further courses to your timetable.</p>
+
+        <p>At the moment, we only support the university-wide unique course-codes, consisting of 4 letters and 5 numbers. Good luck!</p>
+
+        {% for field in form.course_codes %}
+            {{ field(pattern="^\w{4}\d{5}$", title="a valid University of Edinburgh course code, consisting of 4 letters and 5 numbers, i.e. MATH08058") }}
+        {% endfor %}
+
+        <a id="add-course-code-input-button" href="javascript:void(0)" onclick="addCourseCodeInputElement()">+</a>
+
+        {{ form.submit_button(id="course-code-form-button") }}
+    </form>
+{% endblock body %}
+
+
+
 {% block scripts %}
     <script type="text/javascript">
         function addCourseCodeInputElement (n) {
@@ -16,6 +36,7 @@
             next_input.setAttribute("type", "text");
             next_input.setAttribute("pattern", "^\\w{4}\\d{5}$");
             next_input.setAttribute("title", "a valid University of Edinburgh course code, consisting of 4 letters and 5 numbers, i.e. MATH08058");
+            next_input.value = '';
 
             var form = document.getElementById("course-code-form");
             form.insertBefore(next_input, addInputButton)
@@ -23,23 +44,12 @@
     </script>
 {% endblock scripts %}
 
-{% block blurb %}
-    <p class="lead">INF-YTimetab is the Informatics-Young Team's rewrite of the University of Edinburgh's <a href="http://www.timetab.ed.ac.uk/">Timetab timetabling system</a>.</p>
+{% block styles %}
 
-    <p>Part of the Informatics Young Team's <a href="http://data.inf.ed.ac.uk/ilwhack/">ILWHack-winning</a> project of re-modelling the university's many portals into a single <a href="https://github.com/inf1yt/don">MyED 2."oh"</a> portal, the INF-YTimetable produces a standard <a href="http://en.wikipedia.org/wiki/Icalendar">ical</a> calendar file from a list of your courses, allowing you to import your lecture timetable into almost any Calendar application, including Google Calendar, Outlook, and probably that slide phone you've kept since 2006.</p>
+<style type="text/css">
+input {
+    display: block;
+}
+</style>
 
-    <p>A bit better than an HTML page, non?</p>
-{% endblock blurb %}
-
-{% block body %}
-    <form id="course-code-form" method=post action="/calendar">
-
-        {% for field in form.course_codes %}
-            {{ field(pattern="^\w{4}\d{5}$", title="a valid University of Edinburgh course code, consisting of 4 letters and 5 numbers, i.e. MATH08058") }}
-        {% endfor %}
-
-        <a id="add-course-code-input-button" href="javascript:void(0)" onclick="addCourseCodeInputElement()">+</a>
-
-        {{ form.submit_button(id="course-code-form-button") }}
-    </form>
-{% endblock body %}
+{% endblock styles %}

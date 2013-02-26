@@ -8,6 +8,49 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" />
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            /* The html and body elements cannot have any padding or margin. */
+        }
+
+        #main-content {
+            margin-top: 80px;
+        }
+
+        /* Wrapper for page content to push down footer */
+        #wrap {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+            /* Negative indent footer by it's height */
+            margin: 0 auto -60px;
+        }
+
+        /* Set the fixed height of the footer here */
+        #push,
+        #footer {
+            height: 60px;
+            text-align: center;
+        }
+        #footer {
+            background-color: rgb(238, 238, 238);
+        }
+        #footer p {
+            margin-top: 10px;
+        }
+
+        /* Lastly, apply responsive CSS fixes as necessary */
+        @media (max-width: 767px) {
+            #footer {
+                margin-left: -20px;
+                margin-right: -20px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+    </style>
     {% block styles %}
     {% endblock styles %}
 
@@ -17,39 +60,47 @@
 
 <body>
 
-    {% block header %}
-    <div class="navbar">
-        <div class="navbar-inner">
-            <a class="brand" href="/">{% if title %}{{ title }}{% else %}{{ self.title() }}{% endif %}</a>
-<!--             <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            </ul>
- -->        </div>
+    <div id="wrap">
+        {% block header %}
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="/">{% if title %}{{ title }}{% else %}{{ self.title() }}{% endif %}</a>
+                </div>
+            </div>
+        </div>
+        {% endblock header %}
+
+
+        <div class="container">
+            <div id="main-content" class="row-fluid">
+                    <div id="blurb" class="hero-unit span4">
+                        {% block blurb %}
+                            <p class="lead">INF-YTimetab is the Informatics-Young Team's interface to the University of Edinburgh's <a href="http://www.timetab.ed.ac.uk/">Timetab timetabling system</a>.</p>
+
+                            <p>A bit better than an HTML table, non?</p>
+                        {% endblock blurb %}
+                    </div>
+
+                <div class="span8">
+                    {% block body %}
+                    {% endblock body %}
+                </div>
+            </div>
+        </div>
+        <div id="push"></div>
     </div>
-    {% endblock header %}
 
-<div class="container-fluid">
 
-    <div class="row-fluid">
-    <div class="span6 offset3">
-    {% block blurb %}
-    {% endblock blurb %}
+    <div id="footer">
+        <div class="container">
+            <p class="muted credit">Created by the INF-YT as part of the 2013 <a href="http://data.inf.ed.ac.uk/ilwhack/">ILWHack</a>. All code is open source and <a href="https://github.com/jeffbr13/INF-YTimetab">available on GitHub</a>! All data etc. copyright &copy; its respective owners. Not us.</p>
 
-    {% block body %}
-    {% endblock body %}
+            <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+            {% block scripts %}
+            {% endblock scripts %}
+        </div>
     </div>
-    </div>
-
-    <footer>
-        <p>copyright &copy; 2013 INF-YT</p>
-
-        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-        {% block scripts %}
-        {% endblock scripts %}
-    </footer>
-</div>
 </body>
 </html>

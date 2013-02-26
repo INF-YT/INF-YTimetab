@@ -28,4 +28,4 @@ INF-YTimetab is one component in the Informatics Young Team's
 the awesome crossovers and mashups that could occur if the University opened
 up its data sources.
 
-So this is a bit better than an HTML page, non?
+So this is a bit better than an HTML table, non?
