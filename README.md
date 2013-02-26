@@ -1,16 +1,17 @@
-INF-YTimetable
-==============
+INF-YTimetab
+============
 
-INF-YT's rewrite of the University of Edinburgh's Timetab timetabling system.
+IINF-YTimetab the INF-YT's rewrite of the University of Edinburgh's
+[Timetab](http://www.timetab.ed.ac.uk/) timetabling system.
 
 
 About
 -----
 
-Part of the Informatics Young Team's
-[Innovative Learning Week Data Hack](http://data.inf.ed.ac.uk/ilwhack/)-winning
-project, [MyED 2."oh"](https://github.com/inf1yt/don), the INF-YTimetable
-produces an [ical](http://en.wikipedia.org/wiki/Icalendar) calendar from
-a list of your courses, allowing you to import your lecture timetable into
-Google Calendar, Outlook, or almost any other calendar application.
-
+Part of the Informatics Young Team's [ILWHack](http://data.inf.ed.ac.uk/ilwhack/)
+-winning project of re-modelling the university's many portals into a single
+[MyED 2."oh"](https://github.com/inf1yt/don), the INF-YTimetable produces
+a standard [ical](http://en.wikipedia.org/wiki/Icalendar) calendar file from a
+list of your courses, allowing you to import your lecture timetable into
+almost any Calendar application, including Google Calendar, Outlook, and that
+slide phone you've kept since 2006.
