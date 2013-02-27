@@ -17,7 +17,8 @@ Querying the Data
 This application is really just an interface to all the magic happening
 on the back-end. Because of this, querying the data is simples!
 
-Just send a POST request to the root url, with the course-codes
+Just send a POST request to the `/timetable` endpoint, with the parameters as `course_codes-n=<course-code>` for each course, where `n`
+starts at 0.
 
 
 About

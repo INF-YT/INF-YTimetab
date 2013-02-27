@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from wtforms import Form, TextField, validators, FieldList, SubmitField
+from wtforms import Form, TextField, validators, FieldList
 
 
 class CourseCodeForm(Form):
@@ -13,5 +13,3 @@ class CourseCodeForm(Form):
         validators=[validators.Regexp('[\w]{4}[\d]{5}')]),
         min_entries=1
     )
-
-    submit_button = SubmitField('Generate Calendar')

@@ -3,7 +3,7 @@
 
 
 {% block body %}
-    <form id="course-code-form" method=get action="/timetable">
+    <form id="course-code-form" method=post action="/timetable">
         <h2>Enter your course-codes below:</h2>
 
         <p>Use the '+' button to add further courses to your timetable.</p>
@@ -16,7 +16,7 @@
 
         <a id="add-course-code-input-button" href="javascript:void(0)" onclick="addCourseCodeInputElement()">+</a>
 
-        {{ form.submit_button(id="course-code-form-button") }}
+        <button id="course-code-form-button" type="submit">Generate Timetable</button>
     </form>
 {% endblock body %}
 
@@ -28,9 +28,9 @@
 
             var inputs = document.getElementsByTagName('input');
             var addInputButton = document.getElementById("add-course-code-input-button");
-            var last_input= inputs[inputs.length - 2];
+            var last_input= inputs[inputs.length - 1];
             var next_input = last_input.cloneNode();
-            var next_input_index = inputs.length - 1;
+            var next_input_index = inputs.length;
             next_input.setAttribute("id", "course_codes-" + next_input_index);
             next_input.setAttribute("name", "course_codes-" + next_input_index);
             next_input.setAttribute("type", "text");
