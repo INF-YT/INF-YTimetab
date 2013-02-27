@@ -3,7 +3,7 @@
 
 
 {% block body %}
-    <form id="course-code-form" method=post action="/timetable">
+    <form id="course-code-form" method=post action="/timetable" class="form-horizontal">
         <h2>Enter your course-codes below:</h2>
 
         <p>Use the '+' button to add further courses to your timetable.</p>
@@ -11,12 +11,19 @@
         <p>At the moment, we only support the university-wide unique course-codes, consisting of 4 letters and 5 numbers. Good luck!</p>
 
         {% for field in form.course_codes %}
+        <div class="control-group">
+            <label class="control-label">{{ field.label }}</label>
+            <div class="controls">
             {{ field(pattern="^\w{4}\d{5}$", title="a valid University of Edinburgh course code, consisting of 4 letters and 5 numbers, i.e. MATH08058") }}
+            </div>
+        </div>
         {% endfor %}
 
-        <a id="add-course-code-input-button" href="javascript:void(0)" onclick="addCourseCodeInputElement()">+</a>
+        <div id="form-buttons" class="form-actions">
+            <a id="add-course-code-input-button" class="btn btn-info" href="javascript:void(0)" onclick="addCourseCodeInputElement()" title="Add another course.">+</a>
 
-        <button id="course-code-form-button" type="submit">Generate Timetable</button>
+            <button type="submit" id="course-code-form-button" class="btn btn-primary">Generate Timetable</button>
+        </div>
     </form>
 {% endblock body %}
 
@@ -24,13 +31,15 @@
 
 {% block scripts %}
     <script type="text/javascript">
-        function addCourseCodeInputElement (n) {
+        function addCourseCodeInputElement () {
 
-            var inputs = document.getElementsByTagName('input');
-            var addInputButton = document.getElementById("add-course-code-input-button");
-            var last_input= inputs[inputs.length - 1];
-            var next_input = last_input.cloneNode();
-            var next_input_index = inputs.length;
+            var form = document.getElementById("course-code-form");
+            var controls = document.getElementsByClassName('control-group');
+            var formButtons = document.getElementById("form-buttons");
+            var last_control = controls[controls.length - 1];
+            var next_control = last_control.cloneNode();
+            var next_input_index = controls.length;
+            next_input = next_control.getElementsByTagName('input')[0];
             next_input.setAttribute("id", "course_codes-" + next_input_index);
             next_input.setAttribute("name", "course_codes-" + next_input_index);
             next_input.setAttribute("type", "text");
@@ -38,8 +47,7 @@
             next_input.setAttribute("title", "a valid University of Edinburgh course code, consisting of 4 letters and 5 numbers, i.e. MATH08058");
             next_input.value = '';
 
-            var form = document.getElementById("course-code-form");
-            form.insertBefore(next_input, addInputButton)
+            form.insertBefore(next_control, formButtons);
         };
     </script>
 {% endblock scripts %}
