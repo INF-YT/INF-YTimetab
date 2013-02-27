@@ -36,18 +36,23 @@
         function addCourseCodeInputElement () {
 
             var form = document.getElementById("course-code-form");
-            var controls = document.getElementsByClassName('control-group');
             var formButtons = document.getElementById("form-buttons");
+            var controls = document.getElementsByClassName('control-group');
             var last_control = controls[controls.length - 1];
             var next_control = last_control.cloneNode();
             var next_input_index = controls.length;
+            var next_input_id = "course_codes-" + next_input_index
+
             next_input = next_control.getElementsByTagName('input')[0];
-            next_input.setAttribute("id", "course_codes-" + next_input_index);
-            next_input.setAttribute("name", "course_codes-" + next_input_index);
+            next_input.setAttribute("id", next_input_id);
+            next_input.setAttribute("name", next_input_id);
             next_input.setAttribute("type", "text");
             next_input.setAttribute("pattern", "^\\w{4}\\d{5}$");
             next_input.setAttribute("title", "a valid University of Edinburgh course code, consisting of 4 letters and 5 numbers, i.e. MATH08058");
             next_input.value = '';
+
+            var text_label = next_control.getElementsByTagName('label')[1];
+            text_label.setAttribute("for", next_input_id);
 
             form.insertBefore(next_control, formButtons);
         };
