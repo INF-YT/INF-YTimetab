@@ -39,11 +39,11 @@
             var formButtons = document.getElementById("form-buttons");
             var controls = document.getElementsByClassName('control-group');
             var last_control = controls[controls.length - 1];
-            var next_control = last_control.cloneNode();
+            var next_control = last_control.cloneNode(true);
             var next_input_index = controls.length;
             var next_input_id = "course_codes-" + next_input_index
 
-            next_input = next_control.getElementsByTagName('input')[0];
+            var next_input = next_control.getElementsByTagName('input')[0];
             next_input.setAttribute("id", next_input_id);
             next_input.setAttribute("name", next_input_id);
             next_input.setAttribute("type", "text");
