@@ -29,9 +29,9 @@ For example, using [httpie](https://github.com/jkbr/httpie):
 >>> http --form POST http://timetab.cratical.com/timetable course_codes-0='MATH08058'
 # should return something along the lines of:
 HTTP/1.1 200 OK
-Content-Length: ...
+Content-Length: # ...
 Content-Type: text/calendar
-# ...
+# [...]
 
 BEGIN:VCALENDAR
 VERSION:2.0
