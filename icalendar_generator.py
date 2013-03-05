@@ -13,6 +13,12 @@ def main(event_directory, course_codes, output_file=''):
     course-code list, using the individual lecture calendars stored in
     the event-directory.
     """
+    try:
+        course_codes = [field for field in course_codes if (len(field) > 0)]
+        if len(course_codes) <= 0:
+            raise
+    except Exception, e:
+        raise ValueError('No valid course codes passed to icalendar_generator: ' + e.message)
 
     filename_list = []
     for filename in os.listdir(event_directory):

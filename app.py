@@ -17,7 +17,7 @@ def index():
 @app.route('/timetable', methods=['GET', 'POST'])
 def timetable():
     form = CourseCodeForm(request.form)
-    course_codes = [field for field in form.course_codes.data if field != '']
+    course_codes = [field for field in form.course_codes.data if (len(field) > 0)]
     if len(course_codes) == 0:
         return 'No course codes entered.', 204
     ical = generate_ical('static/lectures/', course_codes, 'str')
