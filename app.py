@@ -16,10 +16,18 @@ def index():
 
 @app.route('/timetable', methods=['GET', 'POST'])
 def timetable():
-    form = CourseCodeForm(request.form)
-    course_codes = [field for field in form.course_codes.data if (len(field) > 0)]
+
+    if request.method == 'POST':
+        form = CourseCodeForm(request.form)
+        course_codes = form.course_codes.data
+
+    if request.method == 'GET':
+        course_codes = request.args.values()
+        # TODO: validate using CourseCodeForm
+
+    course_codes = [field for field in course_codes if (len(field) > 0)]
     if len(course_codes) == 0:
-        return 'No course codes entered.', 204
+        return 'No valid course codes entered.', 204
     ical = generate_ical('static/lectures/', course_codes, 'str')
     return (ical, 200, {'Content-Type': 'text/calendar'})
 
