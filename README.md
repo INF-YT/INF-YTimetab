@@ -14,11 +14,42 @@ Calendar, Outlook, and most probably that slide phone you've had since '06.
 Querying the Data
 -----------------
 
-This application is really just an interface to all the magic happening
-on the back-end. Because of this, querying the data is simples!
+This application is just an interface to all the magic happening
+on the back-end, so getting timetables programmatically is pretty simple.
 
-Just send a POST request to the `/timetable` endpoint, with the parameters as `course_codes-n=<course-code>` for each course, where `n`
-starts at 0.
+Just send a [form-encoded](http://www.w3.org/TR/html401/interact/forms#form-data-set) POST request
+to the `/timetable` endpoint, with the parameters as `course_codes-n=<course-code>` for each course,
+where `n` starts at 0.
+
+You should receive a raw calendar back, with the `content-type` header set to `text/calendar`.
+
+For example, using [httpie](https://github.com/jkbr/httpie):
+
+```bash
+>>> http --form POST http://timetab.cratical.com/timetable course_codes-0='MATH08058'
+# should return something along the lines of:
+HTTP/1.1 200 OK
+Content-Length: # ...
+Content-Type: text/calendar
+# [...]
+
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20130114T121000
+DTEND;TZID=Europe/London:20130114T130000
+RRULE:FREQ=WEEKLY;UNTIL=20130408T131000Z
+UID:MATH08058o12@infyt.raj
+DESCRIPTION:
+LOCATION:No Location Data Available
+SUMMARY:Calculus and its Applications
+TRANSP:OPAQUE
+END:VEVENT
+# [...]
+END:VCALENDAR
+
+>>> # and so on...
+```
 
 
 About
