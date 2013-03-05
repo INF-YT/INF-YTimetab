@@ -24,34 +24,32 @@ where `n` starts at 0.
 You should receive a raw calendar back, with the `content-type` header set to `text/calendar`.
 
 For example, using [httpie](https://github.com/jkbr/httpie):
-    
-    >>> http --form POST http://timetab.cratical.com/timetable course_codes-0='MATH08058'
-    # should return something along the lines of:
-    HTTP/1.1 200 OK
-    Content-Length: ...
-    Content-Type: text/calendar
-    # ...
-        
-    BEGIN:VCALENDAR
-    VERSION:2.0
-    BEGIN:VEVENT
-    DTSTART;TZID=Europe/London:20130114T121000
-    DTEND;TZID=Europe/London:20130114T130000
-    RRULE:FREQ=WEEKLY;UNTIL=20130408T131000Z
-    UID:MATH08058o12@infyt.raj
-    DESCRIPTION:
-    LOCATION:No Location Data Available
-    SUMMARY:Calculus and its Applications
-    TRANSP:OPAQUE
-    END:VEVENT
-    # [...]
-    END:VCALENDAR
-    
-    >>> # and so on...
 
+```bash
+>>> http --form POST http://timetab.cratical.com/timetable course_codes-0='MATH08058'
+# should return something along the lines of:
+HTTP/1.1 200 OK
+Content-Length: ...
+Content-Type: text/calendar
+# ...
 
-    
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART;TZID=Europe/London:20130114T121000
+DTEND;TZID=Europe/London:20130114T130000
+RRULE:FREQ=WEEKLY;UNTIL=20130408T131000Z
+UID:MATH08058o12@infyt.raj
+DESCRIPTION:
+LOCATION:No Location Data Available
+SUMMARY:Calculus and its Applications
+TRANSP:OPAQUE
+END:VEVENT
+# [...]
+END:VCALENDAR
 
+>>> # and so on...
+```
 
 
 About
