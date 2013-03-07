@@ -23,11 +23,11 @@ def timetable():
         form = CourseCodeForm(request.args)
 
     if not form.validate():
-        return 'No valid course codes entered.', 204
+        return 'No valid course-codes entered.', 400
 
     course_codes = [field for field in form.course_codes.data if (len(field) > 0)]
     if len(course_codes) == 0:
-        return 'No valid course codes entered.', 204
+        return 'No valid course-codes entered.', 400
     ical = generate_ical('static/lectures/', course_codes, 'str')
     return (ical, 200, {'Content-Type': 'text/calendar'})
 
