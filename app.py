@@ -19,13 +19,13 @@ def timetable():
 
     if request.method == 'POST':
         form = CourseCodeForm(request.form)
-        course_codes = form.course_codes.data
-
     if request.method == 'GET':
-        course_codes = request.args.values()
-        # TODO: validate using CourseCodeForm
+        form = CourseCodeForm(request.args)
 
-    course_codes = [field for field in course_codes if (len(field) > 0)]
+    if not form.validate():
+        return 'No valid course codes entered.', 204
+
+    course_codes = [field for field in form.course_codes.data if (len(field) > 0)]
     if len(course_codes) == 0:
         return 'No valid course codes entered.', 204
     ical = generate_ical('static/lectures/', course_codes, 'str')
