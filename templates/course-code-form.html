@@ -1,14 +1,12 @@
 {% extends "base.html" %}
-{% block title %}INF-YTimetab{% endblock title %}
-
 
 {% block body %}
     <form id="course-code-form" method=get action="/timetable" class="form-horizontal">
-        <h2>Enter your course-codes below:</h2>
+        <legend>Enter your course-codes below:</legend>
 
         <p>Use the '+' button to add further courses to your timetable.</p>
 
-        <p>At the moment, we only support the university-wide unique course-codes, consisting of 4 letters and 5 numbers. Good luck!</p>
+        <p>At the moment, we only support the university-wide unique course-codes, consisting of 4 letters and 5 numbers. Suppport for entering course titles soon be available. Enjoy!</p>
 
         <hr>
 
@@ -27,6 +25,8 @@
             <button type="submit" id="course-code-form-button" class="btn btn-primary">Generate Timetable</button>
         </div>
     </form>
+    <p class="alert alert-info"><strong>Note:</strong> the generated calendar file currently causes the Apple Calendar application for Macs to choke. Be warned!</p>
+
 {% endblock body %}
 
 

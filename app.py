@@ -24,7 +24,7 @@ def timetable():
 
     course_codes = [field for field in form.course_codes.data if (len(field) > 0)]
 
-    if not form.validate() or len(course_codes) == 0:
+    if len(course_codes) == 0 or not form.validate():
         return render_template('error-page.html', page_title='400 Bad Reqest', error_message='No valid course-codes entered.'), 400
 
     try:

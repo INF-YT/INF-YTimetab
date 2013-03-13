@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="alert alert-error">
-<h2>{{ page_title }}</h2>
-<p>{% block error_message %}There has been an error in processing your request.{% endblock error_message %}</p>
+    <h2>{{ page_title }}</h2>
+    {% if error_message %}<p>{{ error_message }}</p>{% endif %}
 </div>
 {% endblock body %}
