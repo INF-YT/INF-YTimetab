@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block page_title %}500 Internal Server Error{% endblock page_title %}
+
+
+{% block body %}
+<div class="alert alert-error">
+<h2>{{ page_title }}</h2>
+<p>{% block error_message %}There has been an error in processing your request.{% endblock error_message %}</p>
+</div>
+{% endblock body %}

@@ -22,15 +22,24 @@ def timetable():
     if request.method == 'GET':
         form = CourseCodeForm(request.args)
 
-    if not form.validate():
-        return 'No valid course-codes entered.', 400
-
     course_codes = [field for field in form.course_codes.data if (len(field) > 0)]
-    if len(course_codes) == 0:
-        return 'No valid course-codes entered.', 400
-    ical = generate_ical('static/lectures/', course_codes, 'str')
+
+    if not form.validate() or len(course_codes) == 0:
+        return render_template('error-page.html', page_title='400 Bad Reqest', error_message='No valid course-codes entered.'), 400
+
+    try:
+        ical = generate_ical('static/lectures/', course_codes, 'str')
+    except KeyError, e:
+        return render_template('error-page.html', page_title='404 Not Found', error_message=e.message), 404
+    except Exception, e:
+        raise e
+
     return (ical, 200, {'Content-Type': 'text/calendar'})
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.

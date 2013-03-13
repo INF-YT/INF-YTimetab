@@ -26,6 +26,9 @@ def main(event_directory, course_codes, output_file=''):
             if filename.startswith(code):
                 filename_list.append(str(os.path.join(event_directory, filename)))
 
+    if len(filename_list) == 0:
+        raise KeyError('No course codes matching ' + str(course_codes) + ' found.')
+
     out = sys.stdout
     if output_file.startswith('str'):
         # write to an internal string object

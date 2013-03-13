@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{% if title %}{{ title }}{% else %}{% block title %}{% endblock title %}{% endif %}</title>
+    <title>INF-YTimetab{% if page_title %} - {{ page_title }}{% endif %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-responsive.min.css') }}" />
+
+    <!-- Footer styles -->
     <style type="text/css">
         html,
         body {
@@ -53,6 +55,7 @@
             }
         }
     </style>
+
     {% block styles %}
     {% endblock styles %}
 
@@ -67,7 +70,7 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="/">{% if title %}{{ title }}{% else %}{{ self.title() }}{% endif %}</a>
+                    <a class="brand" href="/">Inf-YTimetab</a>
                 </div>
             </div>
         </div>
