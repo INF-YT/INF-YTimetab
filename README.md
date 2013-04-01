@@ -1,5 +1,5 @@
-INF-YTimetab
-============
+[INF-YTimetab](http://timetab.inf-yt.org.uk)
+============================================
 
 INF-YTimetab is the Informatics Young Team's rewrite of the University of
 Edinburgh's [Timetab timetabling system](http://www.timetab.ed.ac.uk/).
@@ -26,7 +26,7 @@ You should receive a raw calendar back, with the `content-type` header set to `t
 For example, using [httpie](https://github.com/jkbr/httpie):
 
 ```bash
->>> http --form POST http://timetab.cratical.com/timetable course_codes-0='MATH08058'
+>>> http --form POST http://timetab.inf-yt.org.uk/timetable course_codes-0='MATH08058'
 # should return something along the lines of:
 HTTP/1.1 200 OK
 Content-Length: # ...
