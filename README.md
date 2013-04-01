@@ -1,7 +1,7 @@
 [INF-YTimetab](http://timetab.inf-yt.org.uk)
 ============================================
 
-INF-YTimetab is the Informatics Young Team's rewrite of the University of
+INF-YTimetab is the INF-YT's rewrite of the University of
 Edinburgh's [Timetab timetabling system](http://www.timetab.ed.ac.uk/).
 
 It produces a standard
@@ -55,7 +55,7 @@ END:VCALENDAR
 About
 -----
 
-INF-YTimetab is one component in the Informatics Young Team's
+INF-YTimetab is one component in the INF-YT's
 [ILWHack-winning project](http://data.inf.ed.ac.uk/ilwhack/), illustrating
 the awesome crossovers and mashups that could occur if the University opened
 up its data sources.
